@@ -15,6 +15,10 @@ func (w *Wordlist) ReadWordlist(path string) {
 	var words []string
 	logger.InfoLog.Println("Reading wordlist from:", path)
 	wordList, err := os.Open(path)
+	if err != nil {
+		logger.ErrorLog.Println("Error opening wordlist file:", err)
+		return
+	}
 	if os.IsNotExist(err) {
 		logger.ErrorLog.Println("Wordlist file does not exist:", path)
 		return
